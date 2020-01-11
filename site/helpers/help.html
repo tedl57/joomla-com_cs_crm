@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>CS CRM Documentation</title>
+</head>
+<body>
+<style>
+table, tr, td {
+border: 1px solid black;
+}
+</style>
+<h2>Component Documentation</h2>
+<p style="font-size:8px">To be completed... last update: 2020-01-09</p>
+This component is used to track an organization's memberships and also as a general CRM for contacts.
+<h2>Features</h2>
+<ol>
+<li>
+Member/Contact Data Management
+</li>
+<li>
+Enter Payments (Membership DB Only)
+</li>
+<li>
+Renewal Reminders (Membership DB Only)
+</li>
+</ol>
+<h2>Database Tables</h2>
+<table>
+<tr>
+<td>
+Table Name
+</td>
+<td>
+Purpose
+</td>
+<td>
+Component 
+</td>
+</tr>
+<tr>
+<td>
+__cs_members
+</td>
+<td>
+Membership Records
+</td>
+<td>
+com_cs_crm,com_cs_sponsors 
+</td>
+</tr>
+<tr>
+<td>
+__cs_contacts
+</td>
+<td>
+Contact Records
+</td>
+<td>
+com_cs_crm 
+</td>
+</tr><tr>
+<td>
+__cs_contacts
+</td>
+<td>
+Contact Records
+</td>
+<td>
+com_cs_crm 
+</td>
+</tr><tr>
+<td>
+__cs_contacts
+</td>
+<td>
+Contact Records
+</td>
+<td>
+com_cs_crm 
+</td>
+</tr><tr>
+<td>
+__cs_contacts
+</td>
+<td>
+Contact Records
+</td>
+<td>
+com_cs_crm 
+</td>
+</tr><tr>
+<td>
+__cs_contacts
+</td>
+<td>
+Contact Records
+</td>
+<td>
+com_cs_crm 
+</td>
+</tr><tr>
+<td>
+__cs_finances
+</td>
+<td>
+Records membership payments
+</td>
+<td>
+com_cs_crm 
+</td>
+</tr><tr>
+<td>
+__cs_donation_funds
+</td>
+<td>
+Donation Funds
+</td>
+<td>
+com_cs_payments
+</td>
+</tr><tr>
+<td>
+__cs_businesses
+</td>
+<td>
+Sponsorship Details
+</td>
+<td>
+com_cs_sponsors
+</td>
+</tr>
+</table>
+<pre>
+ __cs_members_xx where xx is: statuses, types, sources, notes
+ __cs_contacts_xx where xx is: statuses, types, sources, notes
+</pre>
+
+<h2>Plugins</h2>
+		
+Plugins allow the application to be extended by the end user without modifying core code.
+		
+All plugins are defined in Administrator component options Plugins tab.  There is a parameter
+for the Membership DB and the Contacts DB.  Each is a comman separated list of plugin names.
+
+A plugin with a name of "Run Example One" is implemented by the file run_example_one.php
+
+Custom plugin PHP code should be uploaded to the folder:
+		
+&gt;Joomla Root&lt;/components/com_cs_crm/helpers/plugins/xx
+where xx is either members or contacts.
+
+Look at one of the included example plugins to see the class that is used to run the plugin.
+Returning true from execute() will cause the Joomla framework to continue, false will cause a jexit.
+
+<h2>Membership DB Specific Features</h2>
+<h3>Entering payments via the Enter Payment form</h3>
+
+Click the <b>Paid Through</b> link to show this form
+
+The submit button on the <b>Enter Payment</b> form can have these values:
+
+  Renew - Active member shown
+  Activate - Applied shown
+  Reactivate - Non Active shown
+ 
+Payment Paid Through Date is
+  
+  Renew - 1 Year from current Active member's Paid Through
+  Applied - 1 Year from today 
+  Reactivate - 1 Year from today (same as applied)
+ 
+Defaults:
+ 
+  1 Year Term
+  How = Online
+  Where = PayPal
+</pre>
+
+More help coming soon...
+
+</body>
+</html>

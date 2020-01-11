@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+   <update>
+      <name>CS CRM</name>
+      <description>CS CRM Component</description>
+      <element>com_cs_crm</element>
+      <type>component</type>
+      <version>1.0.3</version>
+	  <infourl title="CS CRM URL">https://creativespirits.org/products/joomla/com_cs_crm-release-notes.html</infourl>
+      <downloads>
+		  <downloadurl type="full" format="zip">https://creativespirits.org/products/joomla/com_cs_crm-1.0.3.zip</downloadurl>
+      </downloads>
+      <tags>
+         <tag>some-tag</tag>
+      </tags>
+      <maintainer>Creative Spirits</maintainer>
+      <maintainerurl>https://creativespirits.org</maintainerurl>
+      <section>some-section</section>
+      <targetplatform name="joomla" version=".*" />
+   </update>
+</updates>

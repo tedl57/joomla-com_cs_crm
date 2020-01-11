@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset label="Settings" name="cs_crm">
+<field name="show_note_username" type="radio" default="0" label="Show username in notes?" description="Should the username that created a note be shown in notes?">
+  <option value="0">No</option>
+  <option value="1">Yes</option>
+</field>
+<field name="param3" filter="safehtml" type="text" default="param3" label="COM_CS_CRM_FORM_LBL_PARAM3" description="COM_CS_CRM_FORM_DESC_PARAM3" hint="COM_CS_CRM_FORM_LBL_PARAM3"/>
+<field name="param4" filter="safehtml" type="text" default="param4" label="COM_CS_CRM_FORM_LBL_PARAM4" description="COM_CS_CRM_FORM_DESC_PARAM4" hint="COM_CS_CRM_FORM_LBL_PARAM4"/>
+
+    </fieldset>
+    <fieldset name="email_templates" description="Defines the format of email sent out by this component" label="Email Templates">
+    	<field name="renewal_from_name" type="text" default="" label="Renewal From Name" description="Name on From line format for the renewal confirmation email sent out (optional)" hint="Optional name and title"/>
+    	<field name="renewal_from_addr" type="text" default="email@domain.com" label="Renewal From Address" description="Email Address on From line format for the renewal confirmation email sent out" hint="renewal from line address hint"/>
+    	<field name="renewal_subject" type="text" default="Thank you for your renewal %fname%!" label="Renewal Subject" description="Subject line format for the renewal confirmation email sent out" hint="renewal subject line hint"/>
+    	<field name="renewal_body" type="textarea" default="Dear %fname%,\n\nWe thank you for your continuing support of the ORG!\n\nSincerely, us" label="Renewal Body" description="Body format for the renewal confirmation email sent out" hint="renewal body hint"/>
+   		<field name="renewal_reminder_summary_from_name" type="text" default="" label="Renewal Reminder Summary From Name" description="Name on From line format for the renewal reminder summary email sent out (optional)" hint="Optional name and title"/>
+    	<field name="renewal_reminder_summary_from_addr" type="text" default="" label="Renewal Reminder Summary From Address" description="Email Address on From line format for the renewal reminder summary email sent out" hint="renewal reminder summary from line address hint"/>
+    	<field name="renewal_reminder_summary_subject" type="text" default="" label="Renewal Reminder Summary Subject" description="Subject line format for the renewal reminder summary email sent out" hint="renewal reminder summary subject line hint"/>
+    	<field name="renewal_reminder_summary_body" type="textarea" default="" label="Renewal Reminder Summary Body" description="Body format for the renewal reminder summary email sent out" hint="renewal reminder summary body hint"/>
+    	<field name="renewal_reminder_summary_to_addr" type="text" default="" label="Renewal Reminder Summary To Address" description="Email Address on To line format for the renewal reminder summary email sent out" hint="renewal reminder summary to line address hint"/>
+   		<field name="renewal_reminder_duesoon_from_name" type="text" default="" label="Renewal Reminder Due Soon From Name" description="Name on From line format for the renewal reminder email sent out (optional)" hint="Optional name and title"/>
+    	<field name="renewal_reminder_duesoon_from_addr" type="text" default="" label="Renewal Reminder Due Soon From Address" description="Email Address on From line format for the renewal reminder email sent out" hint="Renewal reminder due soon from line address"/>
+    	<field name="renewal_reminder_duesoon_subject" type="text" default="" label="Renewal Reminder Due Soon Subject" description="Subject line format for the renewal due soon email sent out" hint="Renewal reminder due soon subject line"/>
+    	<field name="renewal_reminder_duesoon_body" type="textarea" default="" label="Renewal Reminder Due Soon Body" description="Body format for the renewal reminder due soon email sent out" hint="Renewal reminder due soon body"/>
+   		<field name="renewal_reminder_pastdue_from_name" type="text" default="" label="Renewal Reminder Past Due From Name" description="Name on From line format for the renewal reminder Past Due email sent out (optional)" hint="Optional name and title"/>
+    	<field name="renewal_reminder_pastdue_from_addr" type="text" default="" label="Renewal Reminder Past Due From Address" description="Email Address on From line format for the renewal reminder Past Due email sent out" hint="Renewal reminder Past Due from line address"/>
+    	<field name="renewal_reminder_pastdue_subject" type="text" default="" label="Renewal Reminder Past Due Subject" description="Subject line format for the renewal Past Due email sent out" hint="Renewal reminder Past Due subject line"/>
+    	<field name="renewal_reminder_pastdue_body" type="textarea" default="" label="Renewal Reminder Past Due Body" description="Body format for the renewal reminder Past Due email sent out" hint="Renewal reminder Past Due body"/>
+   		<field name="new_cms_user_from_name" type="text" default="" label="New CMS User From Name" description="Name on From line format for the new CMS user email sent out (optional)" hint="Optional name and title"/>
+    	<field name="new_cms_user_from_addr" type="text" default="" label="New CMS User From Address" description="Email Address on From line format for the new CMS user email sent out" hint="New CMS user from line address"/>
+    	<field name="new_cms_user_subject" type="text" default="" label="New CMS User Subject" description="Subject line format for the new CMS user email sent out" hint="New CMS user subject line"/>
+    	<field name="new_cms_user_body" type="textarea" default="" label="New CMS User Body" description="Body format for the new CMS user email sent out" hint="New CMS user body"/>
+	</fieldset>
+    <fieldset name="plugins" description="Defines runnable plugins" label="Plugins">
+    	<field name="plugin_directory" type="text" default="helpers/plugins" label="Plugins Directory" description="The location of the plugin code files relative to the component" hint="Required to run plugins"/>
+    	<field name="members_plugin_definitions" type="textarea" default='{"Example1":"example1.php"}' label="Members Plugins Definitions" description="JSON formatted list of plugin names and code files" hint="Required to run plugins"/>
+    	<field name="contacts_plugin_definitions" type="textarea" default='{"Example1":"example1.php"}' label="Contacts Plugins Definitions" description="JSON formatted list of plugin names and code files" hint="Required to run plugins"/>
+		<field name="mailman_listserve_name" type="text" default="" label="Mailman Listserve Name" description="Used by some Mailman plugins." hint="optional"/>
+		<field name="mailman_host" type="text" default="" label="Mailman Host" description="Used by some Mailman plugins." hint="optional"/>
+		<field name="mailman_domain" type="text" default="" label="Mailman Domain" description="Used by some Mailman plugins." hint="optional"/>
+		<field name="mailman_password" type="text" default="" label="Mailman Password" description="Used by some Mailman plugins." hint="optional"/>
+	</fieldset>
+    <fieldset name="permissions" description="JCONFIG_PERMISSIONS_DESC" label="JCONFIG_PERMISSIONS_LABEL">
+        <field name="rules" type="rules" component="com_cs_crm" class="inputbox" filter="rules" validate="rules" label="JCONFIG_PERMISSIONS_LABEL" section="component" />
+	</fieldset>
+
+    <fieldset name="component">
+        <field name="save_history" type="radio" class="btn-group btn-group-yesno" default="0" label="JGLOBAL_SAVE_HISTORY_OPTIONS_LABEL" description="JGLOBAL_SAVE_HISTORY_OPTIONS_DESC">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field name="history_limit" type="text" filter="integer" label="JGLOBAL_HISTORY_LIMIT_OPTIONS_LABEL" description="JGLOBAL_HISTORY_LIMIT_OPTIONS_DESC" default="5"/>
+    </fieldset>
+</config>
+<!--
+########################################################################################
+The following are a list of all the different types of fields you can add to this file
+They are here for copy pasting - neat eh?
+########################################################################################
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mycalendar" type="calendar" default="5-10-2008" label="Select a date" description="" format="%d-%m-%Y" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mycategory" type="category" label="Select a category" description="" section="3" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="myeditor" type="editors" default="none" label="Select an editor" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="myfile" type="filelist" default="" label="Select a file" description="" directory="administrator" filter="" exclude="" stripext="" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="myfolder" type="folderlist" default="" label="Select a folder" directory="administrator" filter="" exclude="" stripext="" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="myhelpsite" type="helpsites" default="" label="Select a help site" description="" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mysecretvariable" type="hidden" default="" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="myimage" type="imagelist" default="" label="Select an image" description="" directory="" exclude="" stripext="" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mylanguage" type="languages" client="site" default="en-GB" label="Select a language" description="" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mylistvalue" type="list" default="" label="Select an option" description="">
+  <option value="0">Option 1</option>
+  <option value="1">Option 2</option>
+</field>
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mymenu" type="menu" default="mainmenu" label="Select a menu" description="Select a menu" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mymenuitem" type="menuitem" default="45" label="Select a menu item" description="Select a menu item" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mypassword" type="password" default="secret" label="Enter a password" description="" size="5" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="myradiovalue" type="radio" default="0" label="Select an option" description="">
+  <option value="0">1</option>
+  <option value="1">2</option>
+</field>
+
+https://docs.joomla.org/Standard_form_field_types
+<field type="spacer" default="&lt;b&gt;Advanced parameters&lt;/b&gt;" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="myfield" type="sql" default="10" label="Select an article" query="SELECT id, title FROM #__content" key_field=”id” value_field=”title” />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mytextvalue" type="text" default="Some text" label="Enter some text" description="" size="10" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mytextarea" type="textarea" default="default" label="Enter some text" description="" rows="10" cols="5" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="mytimezone" type="timezones" default="-10" label="Select a timezone" description="" />
+
+https://docs.joomla.org/Standard_form_field_types
+<field name="myusergroups" type="usergroup" default="" label="Select a user group" description="" />
+
+
+-->

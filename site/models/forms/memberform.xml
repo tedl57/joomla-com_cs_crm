@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset name="addmember" label="Add Member">
+    <field 
+    	name="fname" 
+    	type="text"
+    	label="testFirst Name"
+    	testlabel="firstnametest"
+    />    	
+    <field 
+    	name="lname" 
+    	type="text"
+    	label="Last Name"
+    />
+    <field 
+    	name="bname" 
+    	type="text"
+    	label="Business Name"
+    />
+    <field 
+    	name="id"
+    	type="text"
+    	readonly="true"
+    	class="readonly"
+    	label="Id"
+    />    	
+  </fieldset>
+</form>
