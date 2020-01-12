@@ -7,7 +7,7 @@
     <author>Ted Lowe</author>
     <authorEmail>lists@creativespirits.org</authorEmail>
     <authorUrl>https://www.creativespirits.org</authorUrl>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <description>Simple contact management for membership-based organizations.</description>
     <install> <!-- Runs on install -->
         <sql>

@@ -11,7 +11,7 @@ function FIXMEuserOnActivate($data,$verbose)
 
 	/* User ann.kramer added to Mambo CMS as ID 1039
 	 * Sent instructions to Ann Kramer @ user@example.com
-	 * Sent welcome email to Amy Kramer @ memberslistserve@example.com
+	 * Sent welcome email to Ann Kramer @ memberslistserve@example.com
 	 */
 
 	////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ function FIXMEuserOnActivate($data,$verbose)
 		JFactory::getApplication()->enqueueMessage("No Joomla User found",'error');
 		return true;
 	}
-//		{"id":"63","name":"Rad Towe","username":"rad.towe","email":"rad.towe@example.com","password":"xxxxxxxxxxxxxxxxxxxxx","usertype":"Super Administrator","block":"0","sendEmail":"0","gid":"25","registerDate":"2006-12-15 01:23:45","lastvisitDate":"2018-12-06 15:08:00","activation":"","params":"editor=tinymce\nexpired=\nexpired_time="}
+//		{"id":"63","name":"Rad Towe","username":"rad.towe","email":"user@example.com","password":"xxxxxxxxxxxxxxxxxxxxx","usertype":"Super Administrator","block":"0","sendEmail":"0","gid":"25","registerDate":"2006-12-15 01:23:45","lastvisitDate":"2018-12-06 15:08:00","activation":"","params":"editor=tinymce\nexpired=\nexpired_time="}
 		$ret = "Found Joomla User";
 		
 */

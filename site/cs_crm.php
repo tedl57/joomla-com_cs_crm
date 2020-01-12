@@ -32,7 +32,7 @@ $action = $jinput->get->get('action',null,'cmd');
 if ( $action != null )
 {
 	$actid = $jinput->get->get('actid',null,'string');
-	handleAction( $action, $actid );	// does not return, it redirects back here w/o the action parm
+	handleAction( $action, $actid );	// in controller, does not return, it redirects back here w/o the action parm
 }
 
 // Execute the task.
@@ -46,7 +46,7 @@ $controller->redirect();
 function handleAction($action,$actid)
 {
 	// no controller actions are allowed by guests (unlogged in users), except the cron task(s)
-	if (!Cs_crmHelpersCs_crm::isUserAuth("$action"))	// authtodo:
+	if (!Cs_crmHelpersCs_crm::isUserAuth($action))	// authtodo: handleAction() in controller
 		return;
 	
 	switch( $action )

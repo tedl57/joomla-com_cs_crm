@@ -25,20 +25,52 @@ class Cs_crmHelpersCs_crm
 	{
 		
 	}
-	public static function isUserAuth($item)
+	public static function isUserAuth($action)
 	{
 		// authtodo:
 		$user   = JFactory::getUser();
-//tmp xxxx JFactory::getApplication()->enqueueMessage("isuserauth($item): user id #".$user->id, 'info');
-		
+
 		// check if guest user (not logged in)
 		if ( $user->id == 0 ) 
 		{
-			if ( $item == "dorenewalreminders")	// unlogged in cron can run this action
+			if ( $item == "dorenewalreminders")	// not logged in cron can run this action
 				return true;
 			return false;
 		}
-		return true;
+
+		// all registered users (logged in members) have complete authority in the Contacts DB
+		
+		if ( ! self::isMemDB() )
+			return true;
+
+		// get membership manager username(s)
+		// todo: handle comman-separated array of usernames
+				
+		$mem_mgr_users = JComponentHelper::getParams('com_cs_crm')->get('mem_mgr_users');
+
+// testing: JFactory::getApplication()->enqueueMessage("isuserauth($action): user id #".$user->id.", username: " . $user->username . ", mgr: $mem_mgr_users", 'info');
+		
+		$isManager = $user->username == $mem_mgr_users;	// todo: support array
+		
+		// managers can do all actions
+		if ( $isManager )
+			return true;
+		
+		// non-managers can only do "read-only" actions
+		switch( $action )
+		{
+		case "setscope":
+		case "showroster":
+		case "gotomember":
+		case "browse":
+		case "showaddress":
+		case "showdata":
+		case "view":
+			return true;
+		}
+		
+		// todo: could put out message saying "Only a membership manager can update these records."
+		return false;
 	}
 	public static function ClearCMSID($memid)
 	{

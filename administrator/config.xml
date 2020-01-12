@@ -5,7 +5,7 @@
   <option value="0">No</option>
   <option value="1">Yes</option>
 </field>
-<field name="param3" filter="safehtml" type="text" default="param3" label="COM_CS_CRM_FORM_LBL_PARAM3" description="COM_CS_CRM_FORM_DESC_PARAM3" hint="COM_CS_CRM_FORM_LBL_PARAM3"/>
+<field name="mem_mgr_users" filter="safehtml" type="text" default="" label="COM_CS_CRM_FORM_LBL_MEM_MGR" description="COM_CS_CRM_FORM_DESC_MEM_MGR" hint="COM_CS_CRM_FORM_LBL_MEM_MGR"/>
 <field name="param4" filter="safehtml" type="text" default="param4" label="COM_CS_CRM_FORM_LBL_PARAM4" description="COM_CS_CRM_FORM_DESC_PARAM4" hint="COM_CS_CRM_FORM_LBL_PARAM4"/>
 
     </fieldset>
