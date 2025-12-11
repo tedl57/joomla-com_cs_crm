@@ -132,6 +132,8 @@ function do_renewalreminder( $rec, $soon, &$db, $today,$max_renewal_reminders,$r
 	if ( $c > 1 )
 		die("ERROR: $c reminder records for memid=$memid!");
 
+	$ret = false;
+
 	if ( $c == 0 )
 	{
 		$msg = "Sent first reminder.";
@@ -150,6 +152,7 @@ function do_renewalreminder( $rec, $soon, &$db, $today,$max_renewal_reminders,$r
 		$result = $db->insertObject( "#__cs_reminders", $obj, 'id' );
 
 		send_renewal_reminder( $rec, 1, $max_renewal_reminders, $soon, $db );
+		$ret = true;
 	}
 	else
 	{
@@ -197,10 +200,14 @@ function do_renewalreminder( $rec, $soon, &$db, $today,$max_renewal_reminders,$r
 				$result = $db->updateObject('#__cs_reminders', $obj, 'id');
 
 				send_renewal_reminder( $rec, $n, $max_renewal_reminders, $soon, $db );
+				$ret = true;
 			}
 		}
 	}
 	echo "<span style='color: $color;'>&nbsp;&nbsp;$msg</span><br>";
+	
+	// return true if a renewal reminder email was sent out
+	return $ret;
 }
 function getDateNewDays( $daysdiff = 0, $curdate = "" ) // rrtodo: put in helpers or libcs
 {
@@ -259,9 +266,10 @@ function dorenewalreminders()
 	}
 	// save special record to indicate renewal reminders have been done today (todo: not quite atomic)
 	$obj = new stdClass();
+	$obj->id = 0;	// will be replaced with new auto_increment id after insert
 	$obj->reminder_date = $today;
 	$obj->reminder_type = "renewalreminders";
-	$db->insertObject( "#__cs_reminders", $obj, 'id');
+	$result = $db->insertObject( "#__cs_reminders", $obj, 'id');
 	
 	// import library class for sending the reminder emails to members and the summary to the membership manager(s)
 	
@@ -286,22 +294,27 @@ function dorenewalreminders()
 	$db->setQuery($sql);
 	$soondue = $db->loadAssocList();
 	
+	$nsent = 0;
 	$c = count($soondue);
 	echo "<H4>$c due soon with email between $today and $futuredate</h4>";
 	foreach( $soondue as $rec )
-		do_renewalreminder( $rec, true, $db, $today,$max_renewal_reminders,$renewal_reminder_spacing );
-	
+		if ( do_renewalreminder( $rec, true, $db, $today,$max_renewal_reminders,$renewal_reminder_spacing ) )
+			$nsent++;
+			
 	$c = count($pastdue);
 	echo "<H4>$c past due with email as of $today</h4>";
 	foreach( $pastdue as $rec )
-		do_renewalreminder( $rec, false, $db, $today,$max_renewal_reminders,$renewal_reminder_spacing );
+		if ( do_renewalreminder( $rec, false, $db, $today,$max_renewal_reminders,$renewal_reminder_spacing ) )
+			$nsent++;
 		
 	// collect renewal reminder summary output to put in a file and email to the memembership manager
 	
 	$outp = ob_get_clean();
 	
 	// process the links to allow clickability in email
-	// rrtodo: document component dependency com_cs_crm now dependent on com_cs_payments 
+	// rrtodo: document component dependency com_cs_crm now dependent on com_cs_payments
+	// ntodo: add a component parameter to THIS component to break dependency w/ com_cs_payments
+	// ntodo: AND to solve problem of not working in a subfolder eg, http://localhost/joomla39
 	$org_website = JComponentHelper::getParams("com_cs_payments")->get("org_web_address",""); 
 	$outp = str_replace( "href='/index.php?", "href='" . $org_website . "/index.php?",$outp);
 
@@ -337,6 +350,13 @@ function dorenewalreminders()
 	$data["body"] = $outp;
 	
 	$ret = $emailobj->send($data, true); // html email
+	
+	// update renewreminders record to indicate how many renewal reminder emails were actually sent out
+
+	$updobj = new stdClass();
+	$updobj->id = $obj->id;	// id of the record inserted above
+	$updobj->reminders_sent = $nsent;
+	$result = JFactory::getDbo()->updateObject("#__cs_reminders", $updobj, 'id');
 
 	die;
 }
@@ -1023,7 +1043,7 @@ function browse($first=false)
 	 "searchnotes":"1",
 	 "memid":"104"}
 	 */
-	
+	// ntodo: want to also be able to pass search terms in via URL (_GET)
 	if ( isset($_POST["qs"]) && (!empty($_POST["qs"])) && isset($_POST["action"]) && $_POST["action"] == "Search" )
 		return search( $_POST["qs"], isset($_POST["searchnotes"]) );
 

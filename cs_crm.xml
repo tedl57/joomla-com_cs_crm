@@ -77,7 +77,7 @@
     </plugins>
    	<updateservers>
 		<!-- Note: No spaces or linebreaks allowed between the server tags -->
-		<server type="extension" priority="1" name="com_cs_crm">https://creativespirits.org/products/joomla/com_cs_crm-update.xml</server>
+		<server type="extension" priority="1" name="com_cs_crm">https://fveaa.org/products/joomla/com_cs_crm-update.xml</server>
 	</updateservers>
 </extension>
 <!-- Component built by the Joomla Component Creator -->

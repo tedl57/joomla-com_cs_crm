@@ -374,34 +374,40 @@ margin-top: 1.85em;
 </style>
 EOT;
 }
+// 2020-02-14 - this function is no longer necessary w/ PHP7 - use new language feature ?? instead
+// https://stackoverflow.com/questions/13626432/assign-if-variable-is-set
+function setIfInArray(&$data,$index)
+{
+	return array_key_exists($index,$data)? $data[$index] : "";
+}
 function renderFormMemberInfo( $isnew, & $data )
 {
 	$memdb = Cs_crmHelpersCs_crm::isMemDB();
 	
-	$fname = $data["fname"];
-	$lname = $data["lname"];
-	$bname = $data["bname"];
-	$address = $data["address"];
-	$city = $data["city"];
-	$state = $data["state"];
-	$zip = $data["zip"];
-	$email = $data["email"];
-	$website = $data["website"];
-	$hphone = $data["hphone"];
-	$wphone = $data["wphone"];
-	$cphone = $data["cphone"];
-	$fax = $data["fax"];
-	$mi = $data["mi"];
-	$title = $data["title"];
-	$paidthru = $data["paidthru"];
+	$fname = setIfInArray($data,"fname");
+	$lname = setIfInArray($data,"lname");
+	$bname = setIfInArray($data,"bname");
+	$address = setIfInArray($data,"address");
+	$city = setIfInArray($data,"city");
+	$state = setIfInArray($data,"state");
+	$zip = setIfInArray($data,"zip");
+	$email = setIfInArray($data,"email");
+	$website = setIfInArray($data,"website");
+	$hphone = setIfInArray($data,"hphone");
+	$wphone = setIfInArray($data,"wphone");
+	$cphone = setIfInArray($data,"cphone");
+	$fax = setIfInArray($data,"fax");
+	$mi = setIfInArray($data,"mi");
+	$title = setIfInArray($data,"title");
+	$paidthru = setIfInArray($data,"paidthru");
 	$paidthruclass = isDue($paidthru) ? " pastdue" : "";
-	$member_since = $data["member_since"];
-	$newsletter_dist = $data["newsletter_dist"];
-	$status = $data["status"];
-	$source = $data["source"];
-	$memtype = $data["memtype"];
-	$date_entered = $data["date_entered"];
-	$last_updated = $data["last_updated"];
+	$member_since = setIfInArray($data,"member_since");
+	$newsletter_dist = setIfInArray($data,"newsletter_dist");
+	$status = setIfInArray($data,"status");
+	$source = setIfInArray($data,"source");
+	$memtype = setIfInArray($data,"memtype");
+	$date_entered = setIfInArray($data,"date_entered");
+	$last_updated = setIfInArray($data,"last_updated");
 
 	if ($isnew)
 	{
@@ -791,7 +797,7 @@ function getIdLabel( $atext )
 	$label="<a class='crmlink' title='Show complete DB record label for cut and paste purposes' href='$uri'>$atext</a>";
 	return $label;
 }
-function getMapLabel( $data, $atext )
+function getMapLabel( &$data, $atext )
 {
 	//$uaddr = urlencode( $data["address"] . "+" . $data["city"] . "+" . $data["state"] . "+" . $data["zip"] );
 	//http://maps.google.com/maps?f=q&hl=en&q=445+N+Sacramento+Blvd,+Chicago,+IL+60612&ie=UTF8&z=15&ll=41.889116,-87.701325&spn=0.016581,0.043259&om=1&iwloc=addr
@@ -799,7 +805,10 @@ function getMapLabel( $data, $atext )
 	// new format:
 	// https://www.google.com/maps/place/123+Main+St,+Kansas+City,+MO+64105/
 	$mapurl = str_replace( ' ', '+', sprintf( "https://www.google.com/maps/place/%s, %s, %s %s",
-		$data["address"], $data["city"], $data["state"], $data["zip"] ) );
+		setIfInArray($data,"address"),
+		setIfInArray($data,"city"),
+		setIfInArray($data,"state"),
+		setIfInArray($data,"zip") ));
 	$label="<a class='crmlink' title='Get Map to Address' target='_blank' href='$mapurl'>$atext</a>";
 	return $label;
 }

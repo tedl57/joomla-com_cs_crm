@@ -33,7 +33,7 @@ class Cs_crmHelpersCs_crm
 		// check if guest user (not logged in)
 		if ( $user->id == 0 ) 
 		{
-			if ( $item == "dorenewalreminders")	// not logged in cron can run this action
+			if ( $action == "dorenewalreminders")	// not logged in cron can run this action
 				return true;
 			return false;
 		}
@@ -399,7 +399,7 @@ class Cs_crmHelpersCs_crm
 		$plugindefs = JComponentHelper::getParams('com_cs_crm')->get($pluginparm,"");
 
 		if (empty($plugindefs))
-			return null;
+			return array();	// return empty array
 	
 		$plugins = explode(",",$plugindefs);
 
@@ -414,9 +414,8 @@ class Cs_crmHelpersCs_crm
 			$ret[] = $plugin;
 		}
 		
-		if ( count($ret) == 0 )
-			return null;
-		
+		// return empty array if none found
+
 		return $ret;
 	}
     /**
@@ -510,6 +509,7 @@ class Cs_crmHelpersCs_crm
     		$app = "&app=c";
 
     	$end = ( $actid == null ) ? "" : "&actid=$actid";
+    	// ntodo: IMPORTANT - this doesn't work in a subfolder, ie, https://localhost/joomla39/index.php? 
     	$ret = "/index.php?option=com_cs_crm$app&action=$action$end";
 
 //JLog::add("trlowe: getURI: uri=\"$ret\"", JLog::INFO, 'info');

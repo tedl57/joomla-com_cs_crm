@@ -31,6 +31,10 @@
     	<field name="new_cms_user_from_addr" type="text" default="" label="New CMS User From Address" description="Email Address on From line format for the new CMS user email sent out" hint="New CMS user from line address"/>
     	<field name="new_cms_user_subject" type="text" default="" label="New CMS User Subject" description="Subject line format for the new CMS user email sent out" hint="New CMS user subject line"/>
     	<field name="new_cms_user_body" type="textarea" default="" label="New CMS User Body" description="Body format for the new CMS user email sent out" hint="New CMS user body"/>
+   		<field name="email_help_msg_from_name" type="text" default="" label="Email Help Message From Name" description="Name on From line format for the Email Help Message (optional)" hint="Optional name and title"/>
+    	<field name="email_help_msg_from_addr" type="text" default="" label="Email Help Message From Address" description="Email Address on From line format for the Email Help Message sent out" hint="Email Help Message from line address"/>
+    	<field name="email_help_msg_subject" type="text" default="" label="Email Help Message Subject" description="Subject line format for the Email Help Message sent out" hint="Email Help Message subject line"/>
+    	<field name="email_help_msg_body" type="textarea" default="" label="Email Help Message Body" description="Body format for the Email Help Message sent out" hint="Email Help Message body"/>
 	</fieldset>
     <fieldset name="plugins" description="Defines runnable plugins" label="Plugins">
     	<field name="plugin_directory" type="text" default="helpers/plugins" label="Plugins Directory" description="The location of the plugin code files relative to the component" hint="Required to run plugins"/>
