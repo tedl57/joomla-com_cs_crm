@@ -191,7 +191,7 @@ function do_renewalreminder( $rec, $soon, &$db, $today,$max_renewal_reminders,$r
 			else
 			{
 				$msg = "Sent reminder $n.";
-				$color = $n == 2 ? "yellow" : $n == 3 ? "orange" : "red";
+				$color =  $n == 2  ? "yellow" : ( $n == 3  ? "orange" : "red");
 
 				$obj = new stdClass();
 				$obj->id = $remrec[0]["id"];

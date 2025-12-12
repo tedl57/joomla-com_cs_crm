@@ -43,14 +43,18 @@ class Cs_crmHelpersCs_crm
 		if ( ! self::isMemDB() )
 			return true;
 
-		// get membership manager username(s)
-		// todo: handle comman-separated array of usernames
+		// get membership manager username(s) - handle comma-separated array of usernames
 				
-		$mem_mgr_users = JComponentHelper::getParams('com_cs_crm')->get('mem_mgr_users');
+		$isManager = false;
+		$mem_mgr_users = explode(',',JComponentHelper::getParams('com_cs_crm')->get('mem_mgr_users'));
+		for( $i = 0 ; $i < count($mem_mgr_users); $i++ )
+		{
+			$isManager = $user->username == $mem_mgr_users[$i];
+			if ( $isManager )
+				break;
+		}
 
 // testing: JFactory::getApplication()->enqueueMessage("isuserauth($action): user id #".$user->id.", username: " . $user->username . ", mgr: $mem_mgr_users", 'info');
-		
-		$isManager = $user->username == $mem_mgr_users;	// todo: support array
 		
 		// managers can do all actions
 		if ( $isManager )
