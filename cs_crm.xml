@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
     <name>com_cs_crm</name>
-    <creationDate>2020-01-11</creationDate>
-    <copyright>Creative Spirits (c) 2020</copyright>
+    <creationDate>2025-12-11</creationDate>
+    <copyright>Creative Spirits (c) 2020-2025</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <author>Ted Lowe</author>
     <authorEmail>lists@creativespirits.org</authorEmail>
     <authorUrl>https://www.creativespirits.org</authorUrl>
-    <version>1.0.4</version>
+    <version>1.0.6</version>
     <description>Simple contact management for membership-based organizations.</description>
     <install> <!-- Runs on install -->
         <sql>
